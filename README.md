@@ -1,5 +1,5 @@
 # Quapir
 
->Te dis quand partir
+>Te dit quand partir
 
-Vous previent du prochain passage de bus directement sur votre écran.
+Vous prévient du prochain passage de bus directement sur votre écran.
