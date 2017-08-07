@@ -1,6 +1,9 @@
 # conding: utf-8
 
-#TODO: define the type for a stop, a line, and times
+# dependency: arrow package (https://arrow.readthedocs.io/en/latest/) for time management
+# stop type : string
+# line type : string
+# times type : list of Arrow objects
 
 """ Find the stops near a given location
 
