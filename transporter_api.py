@@ -1,6 +1,6 @@
 # conding: utf-8
 
-#TODO: define the type for a stop
+#TODO: define the type for a stop, a line, and times
 
 """ Find the stops near a given location
 
