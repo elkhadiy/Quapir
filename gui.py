@@ -17,7 +17,7 @@ class Example(QWidget):
 
         self.setGeometry(300, 300, 300, 220)
         self.setWindowTitle('Icon')
-        self.setWindowIcon(QIcon('web.jpg'))
+        self.setWindowIcon(QIcon('images/web.jpg'))
 
         self.show()
 
