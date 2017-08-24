@@ -29,8 +29,11 @@ def getGTStops():
 
     stops = resp.json()[4]["0"]["lst"][2:]
 
+    titlelize = lambda lst: [elem.title() for elem in lst]
+    prettify = lambda fugly: " ".join(titlelize(fugly.split()[:-1]))
+
     cleaner_stops = {
-        stop["3"]["str"]: {
+        prettify(stop["3"]["str"]): {
             "id": int(stop["2"]["str"]),
             "coords": (float(stop["4"]["dbl"]), float(stop["5"]["dbl"]))
             }
