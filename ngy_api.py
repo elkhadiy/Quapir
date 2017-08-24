@@ -41,3 +41,27 @@ def getGTStops():
     }
 
     return cleaner_stops
+
+def getGTLines():
+    """ Get the full list of tramway and bus lines
+    """
+    payload = json.dumps(
+        [1, "getGTLines", 1, 0, {"1": {"i32": 0}}],
+        separators=(",", ":")
+        )
+    
+    resp = requests.post(NGY_URL, headers=HEADER, data=payload)
+    
+    lines = resp.json()[4]["0"]["lst"][2:]
+    
+    cleaner_lines = {
+        line["1"]["str"]: {
+            "name": line["2"]["str"],
+            "desc": line["3"]["str"],
+            "fg_color": line["6"]["str"],
+            "bg_color": line["5"]["str"]
+            }
+        for line in lines
+    }
+
+    return cleaner_lines
