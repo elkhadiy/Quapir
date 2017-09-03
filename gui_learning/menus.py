@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import (QMainWindow, QAction, QMenu, qApp, QApplication)
 from PyQt5.QtGui import QIcon
 
 #
-# Current progress : Context menu of http://zetcode.com/gui/pyqt5/menustoolbars/
+# Current progress : starting http://zetcode.com/gui/pyqt5/layout/
 #
 
 class Example(QMainWindow):
@@ -42,22 +42,42 @@ class Example(QMainWindow):
         exitAct.triggered.connect(qApp.quit)
         fileMenu.addAction(exitAct)
 
+        # An other menu, named "View", with a checkable entry
         viewMenu = menubar.addMenu('&View')
         viewStatAct = QAction('View statusbar', self, checkable=True)
         viewStatAct.setStatusTip('View statusbar')
         viewStatAct.setChecked(True)
-        viewStatAct.triggered.connect(self.toggleMenu)
+        viewStatAct.triggered.connect(self.toggle_status_bar)
         viewMenu.addAction(viewStatAct)
+
+        # Add the "Exit" action to a new toolbar
+        self.toolbar = self.addToolBar('Exit')
+        self.toolbar.addAction(exitAct)
 
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('StatusBar and Menu')
         self.show()
 
-    def toggleMenu(self, state):
+    def toggle_status_bar(self, state):
         if state:
             self.status_bar.show()
         else:
             self.status_bar.hide()
+
+    def contextMenuEvent(self, event):
+        """
+        Create a context menu that will show up on a right click anywhere in
+        the window.
+        """
+        cmenu = QMenu(self)
+
+        newAct = cmenu.addAction("&New")
+        openAct = cmenu.addAction("&Open")
+        quitAct = cmenu.addAction("&Quit")
+        action = cmenu.exec_(self.mapToGlobal(event.pos()))
+
+        if action == quitAct:
+            qApp.quit()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
