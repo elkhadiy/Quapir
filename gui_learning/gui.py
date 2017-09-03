@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import sys
-from PyQt5.QtWidgets import (QWidget, QPushButton, QMessageBox, QApplication)
+from PyQt5.QtWidgets import (QWidget, QDesktopWidget, QPushButton, QMessageBox, QApplication)
 from PyQt5.QtGui import (QIcon)
 from PyQt5.QtCore import QCoreApplication
 
@@ -11,7 +11,8 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.initQuit()
+        # self.initQuit()
+        self.initUI()
 
     def initIcon(self):
 
@@ -62,6 +63,19 @@ class Example(QWidget):
             event.accept()
         else:
             event.ignore()
+
+    def initUI(self):
+        self.resize(250, 150)
+        self.center()
+
+        self.setWindowTitle('Center')
+        self.show()
+
+    def center(self):
+        qr = self.frameGeometry()
+        cp = QDesktopWidget().availableGeometry().center()
+        qr.moveCenter(cp)
+        self.move(qr.topLeft())
 
 
 if __name__ == '__main__':
